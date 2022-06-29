@@ -1,30 +1,25 @@
-const cards = document.querySelectorAll(".card");
-let hasFlippedCard = false
-let firstCard, secondCard;
 
-function flipCard(){
-    this.classList.toggle("flip");
-    if(!hasFlippedCard){
-        hasFlippedCard = true;
-        firstCard = this;
-        return;
-    }
-    secondCard = this;
-    hasFlippedCard = false;
-    checkForMath();
+const input = document. querySelector ('.login_input');
+const button = document. querySelector ('.login_button');
+const form = document.querySelector('login-form');
+
+const validadeInput = ({target}) => {
+   if ( target.value.length >2){
+    button.removeAttribute ('disabled');
+   }
 }
 
-function checkForMath(){
-    if(firstCard.dataset.card === secondCard.dataset.card){
-        disableCards();
-        return;
-    }
-    unflipCards();
+const  handleSubmit = (event) => {
+    event.preventDefault();
+    
+    localStorage.setItem('player', input.value);
+    window.location = "./pages/gamer.html";
+    
+ 
 }
+input.addEventListener('input', validadeInput);
+form.addEventListener('submit', handleSubmit);
 
-cards.forEach ((card) =>{
-    card.addEventListenter("click",flipCard)
-})
 
 
 
